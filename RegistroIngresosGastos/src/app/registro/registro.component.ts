@@ -53,7 +53,7 @@ export class RegistroComponent implements OnInit {
     })
   }
 
-  deleteEmployee(row:any){
+  deleteRecord(row:any){
     this.service.deleteRecord(row.id)
     .subscribe(res=>{
       alert("Registro eliminado");
@@ -63,5 +63,10 @@ export class RegistroComponent implements OnInit {
       alert("Hubo un error...");
     })
   }
+
+  filterRecord(valor:any){
+    console.log(valor)
+  }
+  
 
 }
