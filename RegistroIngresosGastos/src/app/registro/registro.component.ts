@@ -64,8 +64,9 @@ export class RegistroComponent implements OnInit {
     })
   }
 
-  filterRecord(valor:any){
-    console.log(valor)
+  filterRecord(param:any,value:any){
+    console.log(param)
+    console.log(value)
   }
   
 
