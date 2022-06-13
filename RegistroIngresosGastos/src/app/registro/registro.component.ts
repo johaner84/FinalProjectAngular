@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup} from '@angular/forms'
+import {FormBuilder,FormGroup,Validators,FormControl} from '@angular/forms'
 import { RegistoServiceService } from '../servicios/registo-service.service';
 import { RegistroModel } from './registro-model';
+import {Filtro} from './filtro-model'
 
 @Component({
   selector: 'app-registro',
@@ -13,6 +14,13 @@ export class RegistroComponent implements OnInit {
     formValue !: FormGroup;
     registroObj: RegistroModel = new RegistroModel()
     registroData : any;
+    form = new FormGroup({
+      Parametro: new FormControl('', Validators.required)
+    });
+    
+    selectedParam:string=""
+
+    valorObj : Filtro =  new Filtro()
 
   constructor(private formBuilder : FormBuilder, private service : RegistoServiceService) { }
 
@@ -22,8 +30,29 @@ export class RegistroComponent implements OnInit {
       Monto : [''],
       Fecha : [''],
       Tipo : [''],
-    })
+      
+    },
+    this.form = this.formBuilder.group({
+      valor:[''],
+      Parametro:['']
+    }))
     this.getAllRecords()
+  }
+
+
+
+  changeParam(e:any) {
+    this.selectedParam = e.target.value;
+  }
+
+  filterData(){
+    let param = this.selectedParam
+    this.valorObj.Valor = this.form.value.valor
+    this.service.getRecordFiltered(param,this.valorObj.Valor)
+    .subscribe(res=>{
+      this.registroData = res
+    })
+    
   }
 
 
@@ -53,13 +82,7 @@ export class RegistroComponent implements OnInit {
     })
   }
   
-  filterRecord(param:any,value:any){
-    this.service.getRecordFiltered(param,value)
-    .subscribe(res=>{
-      console.log(res)
-      this.registroData = res;
-    })
-  }
+
 
   deleteRecord(row:any){
     this.service.deleteRecord(row.id)

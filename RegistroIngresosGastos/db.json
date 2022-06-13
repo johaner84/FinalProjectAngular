@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "Concepto": "adsf",
+      "Monto": 500,
+      "Fecha": "2022-06-01",
+      "Tipo": "Ingreso"
+    },
+    {
+      "id": 3,
+      "Concepto": "asdf",
+      "Monto": 1000,
+      "Fecha": "2022-06-16",
+      "Tipo": "Ingreso"
+    },
+    {
+      "id": 4,
+      "Concepto": "ddd",
+      "Monto": 5,
+      "Fecha": "2000-12-15",
+      "Tipo": "Gasto"
+    },
+    {
+      "id": 5,
+      "Concepto": "Comida",
+      "Monto": 600,
+      "Fecha": "2022-06-02",
+      "Tipo": "Gasto"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
