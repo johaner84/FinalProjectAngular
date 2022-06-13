@@ -6,18 +6,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './registro/registro.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent
+    RegistroComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

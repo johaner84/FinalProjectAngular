@@ -1,14 +1,44 @@
-<nav class="navbar navbar-light bg-primary">
-    <div class="container-fluid">
-        <h1>Registro de gastos e ingresos</h1>
-        <div class="d-flex">
-          
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#IngresosModal">Agregar
-            </button>
-        </div>
-    </div>
-</nav>
-
+<div class="row">    
+  <div class="form-group">
+    <h3>Elija el filtro de su preferencia</h3>
+      <form [formGroup]="form">
+      <div class="col-lg-2">
+          <div class="mb-3">
+              <input class="form-check-input" formControlName="Parametro" (click)="changeParam($event)"
+               type="radio" name="Parametro" id="radioMonto" value="Monto">
+              <label class="form-check-label" for="radioMonto">
+                Monto
+              </label>
+              <input class="form-check-input" formControlName="Parametro" (click)="changeParam($event)" type="radio" name="Parametro" id="radioFecha" value="Fecha">
+              <label class="form-check-label" for="radioFecha">
+                Fecha
+              </label>
+              <input class="form-check-input" formControlName="Parametro" (click)="changeParam($event)" type="radio" name="Parametro" id="radioTipo" value="Tipo">
+              <label class="form-check-label" for="radioTipo">
+                Tipo
+              </label>
+            </div>
+      </div>
+      <div *ngIf="selectedParam=='Monto'" class="col-lg-2">
+          <input type="number" formControlName="valor" class="form-control" id="valueToFilter" placeholder="Ingrese el monto a buscar">
+      </div>
+      <div *ngIf="selectedParam=='Fecha'" class="col-lg-2">
+          <input type="date" id="valueToFilter" formControlName="valor" class="form-control">
+      </div>
+      <div *ngIf="selectedParam=='Tipo'" class="col-lg-2">
+        <select name="TipoRegistro" id="valueToFilter" formControlName="valor">
+          <option value="0">Seleccione el tipo</option>
+          <option value="Ingreso">Ingreso</option>
+          <option value="Gasto">Gasto</option>
+        </select>
+      </div>
+      <div class="col-lg-2">
+          <button class="btn btn-success" data-bs-toggle="modal" (click)="filterData()">Buscar
+          </button>
+      </div>
+    </form>
+  </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -28,8 +58,8 @@
             <td>{{row.Fecha}}</td>
             <td>{{row.Tipo}}</td>
             <td>
-                <button class="btn btn-info" >Edit</button>
-                <button class="btn btn-danger mx-3" (click)="deleteEmployee(row)">Delete</button>
+                <button class="btn btn-info" (click)="editRecord(row)" data-bs-toggle="modal" data-bs-target="#IngresosModal">Edit</button>
+                <button class="btn btn-danger mx-3" (click)="deleteRecord(row)">Delete</button>
             </td>
         </tr>
     </tbody>
@@ -74,5 +104,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="postNewRecord()" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" (click)="postNewRecord()" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" (click)="updateRecord()" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
         </div> 
