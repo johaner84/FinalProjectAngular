@@ -67,7 +67,7 @@ export class RegistroComponent implements OnInit {
        alert("Registro insertado correctamente")
       //  let ref = document.getElementById('cancel')
       //  ref?.click();
-        this.formValue.reset();
+      this.formValue.reset();
        this.getAllRecords();
     },
     err=>{
@@ -95,6 +95,26 @@ export class RegistroComponent implements OnInit {
     })
   }
 
+  editRecord(row:any){
+    this.registroObj.id = row.id
+    this.formValue.controls['Concepto'].setValue(row.Concepto)
+    this.formValue.controls['Monto'].setValue(row.Monto)
+    this.formValue.controls['Fecha'].setValue(row.Fecha)
+    this.formValue.controls['Tipo'].setValue(row.Tipo)
+  }
   
+  updateRecord(){
+    this.registroObj.Concepto = this.formValue.value.Concepto
+    this.registroObj.Monto = this.formValue.value.Monto
+    this.registroObj.Fecha = this.formValue.value.Fecha
+    this.registroObj.Tipo = this.formValue.value.Tipo
+
+    this.service.putRecord(this.registroObj, this.registroObj.id)
+    .subscribe(res=>{
+      alert("Registro actualizado")
+      this.formValue.reset();
+       this.getAllRecords();
+    })
+  }
 
 }

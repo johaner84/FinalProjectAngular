@@ -58,7 +58,7 @@
             <td>{{row.Fecha}}</td>
             <td>{{row.Tipo}}</td>
             <td>
-                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#IngresosModal">Edit</button>
+                <button class="btn btn-info" (click)="editRecord(row)" data-bs-toggle="modal" data-bs-target="#IngresosModal">Edit</button>
                 <button class="btn btn-danger mx-3" (click)="deleteRecord(row)">Delete</button>
             </td>
         </tr>
@@ -104,5 +104,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" (click)="postNewRecord()" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" (click)="postNewRecord()" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+          <button type="button" (click)="updateRecord()" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
         </div> 
