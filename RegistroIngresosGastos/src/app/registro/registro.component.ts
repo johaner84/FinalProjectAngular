@@ -52,6 +52,14 @@ export class RegistroComponent implements OnInit {
       this.registroData = res;
     })
   }
+  
+  filterRecord(param:any,value:any){
+    this.service.getRecordFiltered(param,value)
+    .subscribe(res=>{
+      console.log(res)
+      this.registroData = res;
+    })
+  }
 
   deleteRecord(row:any){
     this.service.deleteRecord(row.id)
@@ -64,10 +72,6 @@ export class RegistroComponent implements OnInit {
     })
   }
 
-  filterRecord(param:any,value:any){
-    console.log(param)
-    console.log(value)
-  }
   
 
 }

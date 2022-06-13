@@ -37,5 +37,12 @@ export class RegistoServiceService {
       return res
     }))
   }
+
+  getRecordFiltered(field:any,value:any){
+    return this.http.get<any>("http://localhost:3000/posts?"+field+'='+value)
+    .pipe(map((res:any)=>{
+      return res
+    }))
+  }
 }
 

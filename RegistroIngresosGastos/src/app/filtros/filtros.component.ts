@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RegistroComponent} from '../registro/registro.component'
 import { FormGroup, FormControl, Validators,FormBuilder} from '@angular/forms';
+import {Filtro} from '../filtros/filtro-model'
  
 
 @Component({
@@ -17,6 +18,8 @@ export class FiltrosComponent implements OnInit {
   
   selectedParam:string=""
 
+  valorObj : Filtro =  new Filtro()
+
   constructor(private comp : RegistroComponent, private formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
@@ -31,8 +34,8 @@ export class FiltrosComponent implements OnInit {
 
   filterData(){
     let param = this.selectedParam
-    let value = document.getElementById('valueToFilter')
-    this.comp.filterRecord(param,value)
+    this.valorObj.Valor = this.form.value.valor
+    this.comp.filterRecord(param,this.valorObj.Valor)
   }
 
 }
